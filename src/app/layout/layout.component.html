@@ -1,0 +1,24 @@
+<mat-sidenav-container>
+    <!-- Menú lateral -->
+    <mat-sidenav mode="side" opened class="menu-lateral">
+      <mat-nav-list>
+        <a mat-list-item routerLink="/inicio">
+            <mat-icon>home</mat-icon>
+            <span>Inicio</span>
+        </a>
+        <a mat-list-item routerLink="/solicitudes">
+            <mat-icon>list_alt</mat-icon>
+            <span>Mis Solicitudes</span>
+        </a>
+        <a mat-list-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Cerrar Sesión</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+  
+    <!-- Contenido principal -->
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

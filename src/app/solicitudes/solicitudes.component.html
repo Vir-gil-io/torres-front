@@ -1,0 +1,60 @@
+<div class="container">
+    <h2>Mis Solicitudes</h2>
+    
+    <!-- Tabla de solicitudes -->
+    <mat-table [dataSource]="solicitudes" *ngIf="!cargando">
+      <!-- Columna Folio -->
+      <ng-container matColumnDef="folio">
+        <mat-header-cell *matHeaderCellDef>Folio</mat-header-cell>
+        <mat-cell *matCellDef="let solicitud">{{ solicitud.folio }}</mat-cell>
+      </ng-container>
+
+      <!-- Columna Productos -->
+      <ng-container matColumnDef="productos">
+        <mat-header-cell *matHeaderCellDef>Productos</mat-header-cell>
+        <mat-cell *matCellDef="let solicitud">
+      <div *ngFor="let consumible of solicitud.consumibles" class="producto-item">
+        <span class="nombre-producto">{{ consumible.nombre_consumible }}</span>
+        <span class="cantidad">(x{{ consumible.cantidad_solicitada }})</span>
+      </div>
+        </mat-cell>
+      </ng-container>
+  
+      <!-- Columna Estado -->
+      <ng-container matColumnDef="estado">
+        <mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+        <mat-cell *matCellDef="let solicitud">
+          <span [ngClass]="{
+            'estado-atendida': solicitud.estado === 'Atendida',
+            'estado-espera': solicitud.estado === 'En espera'
+          }">
+            {{ solicitud.estado }}
+          </span>
+        </mat-cell>
+      </ng-container>
+  
+      <!-- Columna Acciones -->
+      <ng-container matColumnDef="acciones">
+        <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+        <mat-cell *matCellDef="let solicitud">
+          <button mat-icon-button color="primary" [routerLink]="['/solicitudes', solicitud._id]">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="eliminarSolicitud(solicitud._id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="['folio', 'productos', 'estado', 'acciones']"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: ['folio', 'productos', 'estado', 'acciones']"></mat-row>
+    </mat-table>
+  
+    <!-- Mensaje de carga -->
+    <mat-spinner *ngIf="cargando" diameter="40"></mat-spinner>
+  
+    <!-- Botón para nueva solicitud -->
+    <button mat-raised-button color="primary" routerLink="/solicitudes/nueva">
+      Nueva Solicitud
+    </button>
+  </div>

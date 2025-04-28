@@ -1,0 +1,11 @@
+<div class="login-container">
+    <h2>Iniciar Sesión</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>RFC:</label>
+        <input type="text" [(ngModel)]="rfc" name="rfc" required>
+      </div>
+      <button type="submit">Ingresar</button>
+    </form>
+    <div *ngIf="error" class="error-message">{{ error }}</div>
+  </div>

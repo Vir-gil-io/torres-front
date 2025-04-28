@@ -1,0 +1,16 @@
+<div class="welcome-section">
+    <h1>Bienvenido/a, {{ empleado.nombre_empleado }}</h1>
+    <mat-card>
+      <mat-card-content>
+        <p><strong>Departamento:</strong> {{ empleado.departamento }}</p>
+        <p><strong>Puesto:</strong> {{ empleado.puesto }}</p> 
+        <p><strong>RFC:</strong> {{ empleado.RFC }}</p>
+        <p><strong>Correo:</strong> {{ empleado.correo }}</p>
+        <p><strong>Fecha de Registro:</strong> {{ empleado.fecha_registro | date:'dd/MM/yyyy' }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <app-layout></app-layout>
+
+
+  

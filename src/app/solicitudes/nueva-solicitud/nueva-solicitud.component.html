@@ -1,0 +1,54 @@
+<div class="container">
+    <h2>Nueva Solicitud</h2>
+    
+    <form (ngSubmit)="onSubmit()" *ngIf="productos.length > 0">
+      <!-- Departamento y Área (autocompletados desde el empleado) -->
+      <mat-form-field appearance="fill">
+        <mat-label>Departamento</mat-label>
+        <input matInput [value]="empleado.departamento" disabled>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Área</mat-label>
+        <input matInput [value]="empleado.area" disabled>
+      </mat-form-field>
+  
+      <!-- Selección de productos -->
+      <mat-form-field appearance="fill">
+        <mat-label>Producto</mat-label>
+        <mat-select [(ngModel)]="productoSeleccionado" name="producto" required>
+          <mat-option *ngFor="let producto of productos" [value]="producto._id">
+            {{ producto.nombre }} (Disponibles: {{ producto.cantidad }})
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Cantidad</mat-label>
+        <input matInput type="number" [(ngModel)]="cantidad" name="cantidad" required min="1">
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="button" (click)="agregarProducto()">
+        <mat-icon>add</mat-icon> Agregar
+      </button>
+  
+      <!-- Lista de productos agregados -->
+      <div class="productos-list">
+        <div *ngFor="let item of consumibles" class="producto-item">
+          <span>{{ obtenerNombreProducto(item.nombre_consumible) }}</span>
+          <span>x{{ item.cantidad_solicitada }}</span>
+          <button mat-icon-button color="warn" (click)="eliminarProducto(item)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+  
+      <!-- Botones finales -->
+      <div class="button-group">
+        <button mat-raised-button color="primary" type="submit">Enviar Solicitud</button>
+        <button mat-raised-button color="warn" type="button" routerLink="/solicitudes">Cancelar</button>
+      </div>
+    </form>
+  
+    <mat-spinner *ngIf="cargando"></mat-spinner>
+  </div>
