@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 // Para Angular 9 o superior:
 import { MatCardModule } from '@angular/material/card';
@@ -24,6 +24,7 @@ import { NuevaSolicitudComponent } from './solicitudes/nueva-solicitud/nueva-sol
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { ProductoService } from './services/producto.service';
+import { EditarComponent } from './solicitudes/editar/editar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import { ProductoService } from './services/producto.service';
     InicioComponent,
     LayoutComponent,
     SolicitudesComponent,
-    NuevaSolicitudComponent
+    NuevaSolicitudComponent,
+    EditarComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ import { ProductoService } from './services/producto.service';
     MatTableModule,
     MatProgressSpinnerModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideAnimationsAsync(),

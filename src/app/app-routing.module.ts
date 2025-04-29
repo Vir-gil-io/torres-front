@@ -6,6 +6,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { LayoutComponent } from './layout/layout.component';
 import { SolicitudesComponent } from './solicitudes/solicitudes.component';
 import { NuevaSolicitudComponent } from './solicitudes/nueva-solicitud/nueva-solicitud.component';
+import { EditarComponent } from './solicitudes/editar/editar.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
     children: [
       { path: 'inicio', component: InicioComponent },
       { path: 'solicitudes', component: SolicitudesComponent },
+      { path: 'edit-sol/:id', component: EditarComponent } // Added route with parameter
     ]
   },
   { 

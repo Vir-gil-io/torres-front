@@ -37,7 +37,7 @@
       <ng-container matColumnDef="acciones">
         <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
         <mat-cell *matCellDef="let solicitud">
-          <button mat-icon-button color="primary" [routerLink]="['/solicitudes', solicitud._id]">
+          <button mat-icon-button color="primary" [routerLink]="['/edit-sol', solicitud._id]">
             <mat-icon>edit</mat-icon>
           </button>
           <button mat-icon-button color="warn" (click)="eliminarSolicitud(solicitud._id)">
